@@ -3,11 +3,11 @@ import math
 
 
 # Cálculo de média
-def arithmetic_mean (X):
+def arithmetic_mean (X: list) -> bool:
     n = len(X)
-    soma=0
+    soma = 0
     for i in X:
-        soma+=i
+        soma += i
     
     return soma/n
 
@@ -15,25 +15,28 @@ def arithmetic_mean (X):
 
 # Cálculo de mediana
 def median(X):
-    X=np.sort(X)
-    n=len(X)
+    X = np.sort(X)
+    n = len(X)
     if n % 2 == 0:
-        i=int(n/2)
+        i = int(n/2)
         return (X[i-1]+X[i])/2
     else:
-        i=int(n/2)
+        i = int(n/2)
         return X[i]
 
 
 
 # Cálculo da variância
-def var_X(X):
-    X=np.array(X)
-    V=0
-    muu=arithmetic_mean(X)
+def var_X(X: list, biased = True) -> bool:
+    """Variância amostral (Unbiased) grau de liberdade n-1
+    e variância populacional (Biased) grau de liberdade n"""
+    X = np.array(X)
+    V = 0
+    muu = arithmetic_mean(X)
     for i in X:
-        V+=((i-muu)**2)
-    return V/(len(X))
+        V += ((i-muu)**2)
+
+    return V/(len(X)) if biased == True else  V/(len(X)-1)
 
 
 
