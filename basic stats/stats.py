@@ -62,11 +62,14 @@ def mode(X):
 
 
 # Cálculo dos percentis
-def percentile(X, p):
+def percentile(X: list, p: float) -> float:
     k = len(X) * p
-    if k == int(k):
-        k = int(k)
-        return((X[k-1]+X[k])/2)
+    if isinstance(k, float):
+        if k.is_integer():
+            k = int(k)
+            return((X[k-1]+X[k])/2)
+        else:
+            k = math.ceil(k)
+            return(X[k-1])
     else:
-        k = math.ceil(k)
-        return(X[k-1])
+        return "p must be a float number between [0;1]"
