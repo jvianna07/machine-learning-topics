@@ -30,6 +30,7 @@ def median(X):
 def var_X(X: list, biased = True) -> bool:
     """Variância amostral (Unbiased) grau de liberdade n-1
     e variância populacional (Biased) grau de liberdade n"""
+    
     X = np.array(X)
     V = 0
     muu = arithmetic_mean(X)
@@ -74,5 +75,9 @@ def percentile(X: list, p: float) -> float:
         else:
             k = math.ceil(k)
             return(X[k-1])
+        
+    elif isinstance(k,int):
+        return((X[k-1]+X[k])/2)
+    
     else:
         return "p must be a float number between [0;1]"
