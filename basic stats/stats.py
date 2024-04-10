@@ -1,6 +1,7 @@
 import numpy as np
 import math
 
+
 # Cálculo de média
 def arithmetic_mean (X):
     n = len(X)
@@ -9,6 +10,7 @@ def arithmetic_mean (X):
         soma+=i
     
     return soma/n
+
 
 
 # Cálculo de mediana
@@ -34,9 +36,11 @@ def var_X(X):
     return V/(len(X))
 
 
+
 # Cálculo do desvio padrão
 def std_dev(X):
     return math.sqrt(var_X(X))
+
 
 
 # Cálculo da moda
@@ -56,6 +60,13 @@ def mode(X):
     return mode
 
 
+
 # Cálculo dos percentis
-def percentile(X):
-    pass
+def percentile(X, p):
+    k = len(X) * p
+    if k == int(k):
+        k = int(k)
+        return((X[k-1]+X[k])/2)
+    else:
+        k = math.ceil(k)
+        return(X[k-1])
