@@ -3,7 +3,7 @@ import math
 
 
 # Cálculo de média
-def arithmetic_mean (X: list) -> bool:
+def arithmetic_mean (X: list) -> float:
     n = len(X)
     soma = 0
     for i in X:
@@ -14,7 +14,7 @@ def arithmetic_mean (X: list) -> bool:
 
 
 # Cálculo de mediana
-def median(X):
+def median(X: list) -> float:
     X = np.sort(X)
     n = len(X)
     if n % 2 == 0:
@@ -27,7 +27,7 @@ def median(X):
 
 
 # Cálculo da variância
-def var_X(X: list, biased = True) -> bool:
+def var_X(X: list, biased = False) -> float:
     """Variância amostral (Unbiased) grau de liberdade n-1
     e variância populacional (Biased) grau de liberdade n"""
 
@@ -42,13 +42,13 @@ def var_X(X: list, biased = True) -> bool:
 
 
 # Cálculo do desvio padrão
-def std_dev(X):
-    return math.sqrt(var_X(X))
+def std_dev(X, biased = False):
+    return math.sqrt(var_X(X, True)) if biased == True else math.sqrt(var_X(X, False))
 
 
 
 # Cálculo da moda
-def mode(X):
+def mode(X: list) -> float:
     frequencies = {}
     for i in X:
         if i in frequencies:
@@ -67,7 +67,9 @@ def mode(X):
 
 # Cálculo dos percentis
 def percentile(X: list, p: float) -> float:
+    X = np.sort(X)
     k = len(X) * p
+
     if isinstance(k, float):
         if k.is_integer():
             k = int(k)

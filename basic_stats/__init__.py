@@ -1,1 +1,1 @@
-"""This files indicates that basics stats folder is a modules"""
+"""This files indicates that basics stats folder is a module"""
