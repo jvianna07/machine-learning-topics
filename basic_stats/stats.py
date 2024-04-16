@@ -1,5 +1,5 @@
 import numpy as np
-import math
+# import math
 
 
 # Cálculo de média
@@ -29,7 +29,8 @@ def median(X: list) -> float:
 # Cálculo da variância
 def var_X(X: list, biased = False) -> float:
     """Variância amostral (Unbiased) grau de liberdade n-1
-    e variância populacional (Biased) grau de liberdade n"""
+    e variância populacional (Biased) grau de liberdade n
+    Por padrão a função calcula variância amostral"""
 
     X = np.array(X)
     V = 0
@@ -42,8 +43,19 @@ def var_X(X: list, biased = False) -> float:
 
 
 # Cálculo do desvio padrão
-def std_dev(X, biased = False):
-    return math.sqrt(var_X(X, True)) if biased == True else math.sqrt(var_X(X, False))
+def std_dev(X, biased = False) -> float:
+    "Por padrão calcula o desvio padrão amostral (Unbiased), n-1"
+    return np.sqrt(var_X(X, True)) if biased == True else np.sqrt(var_X(X, False))
+
+
+
+# Cálculo do desvio médio absoluto
+def mad_X(X: list) -> float:
+    X = np.array(X)
+    muu = arithmetic_mean(X)
+    deviation = X-muu
+
+    return arithmetic_mean(np.abs(deviation))
 
 
 
@@ -75,7 +87,7 @@ def percentile(X: list, p: float) -> float:
             k = int(k)
             return((X[k-1]+X[k])/2)
         else:
-            k = math.ceil(k)
+            k = np.ceil(k)
             return(X[k-1])
         
     elif isinstance(k, int):
